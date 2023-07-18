@@ -7,6 +7,7 @@ from back_scroll import draw,move_player,draw_boss
 from startbg import start_bg
 from stair import put_stair,first_point,stair_check
 import time
+from gameover import draw_gameover
 
 font = pygame.font.Font(None,30)
 white = (96,96,96)
@@ -57,9 +58,11 @@ def main():
                         sys.exit()
                 
             stair_check(screen)
-            if para.stair_now == 5:
+            if para.stair_now == 2:
                 para.pl_x,para.pl_y = 15,15
                 para.savefile()
+                break
+            elif para.now_hp <= 0:
                 break
             else:
                 draw(screen)
@@ -67,25 +70,28 @@ def main():
                 pygame.display.update()
                 clock.tick(30)
         
-        while True:
+        if para.now_hp > 0:
+            while True:
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    para.savefile()
-                    pygame.quit()
-                    sys.exit()
-                
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
                         para.savefile()
                         pygame.quit()
                         sys.exit()
+                    
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            para.savefile()
+                            pygame.quit()
+                            sys.exit()
 
-            draw_boss(screen)
-            move_player(para.pl_y,para.pl_x)
-            pygame.display.update()
-            clock.tick(30)
-            break
+                draw_boss(screen)
+                move_player(para.pl_y,para.pl_x)
+                pygame.display.update()
+                clock.tick(30)
+                break
+        else:
+            draw_gameover(screen)
 
 
 if __name__ == '__main__':

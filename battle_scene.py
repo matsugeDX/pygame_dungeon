@@ -47,6 +47,7 @@ def draw_msg(bg,txt,x,y,fnt,col):
 
 def battle_scene(bg):
     global point
+    from Dateclass import para
 
     key = pygame.key.get_pressed()
     if key[pygame.K_s] == 1:
@@ -72,6 +73,10 @@ def battle_scene(bg):
 
     bg.blit(backimg,[0,0])
     bg.blit(monstar,[ene_x,ene_y])
+
+    pygame.draw.rect(bg,(255,138,197),(610,10,100,10))
+    nowhp_rate = (para.now_hp/para.max_hp)*100
+    pygame.draw.rect(bg,(0,208,0),(610,10,nowhp_rate,10))
 
     sur = font.render("Cut",True,black)
     bg.blit(sur,[200,600])
@@ -291,23 +296,43 @@ def battle_count(bg):
         elif idx == 14:
             if timer == 1:
                 set_message("Enemy Attack!")
+                ene_atk = random.randint(2,5)
+                set_message("{} damages!".format(ene_atk))
+                para.now_hp -= ene_atk
             if timer == 6:
                 idx += 1
                 timer = 0
         else:
-            idx = 11
-            timer = 0
+            if para.now_hp <= 0:
+                set_message("You Dead...")
+                for i in range(10):
+                    draw_msg(bg,message[i],0,24*i,font,black)
+                pygame.draw.rect(bg,(255,138,197),(610,10,100,10))
+                pygame.display.update()
+                init_message()
+                time.sleep(2)
+                break
+            
+            else:
+                idx = 11
+                timer = 0
         battle_scene(bg)
         pygame.display.update()
         clock.tick(10)
 
 def boss_scene_fin(bg):
+    from Dateclass import para
+
     bg.blit(bossback,[0,0])
+    pygame.draw.rect(bg,(255,138,197),(610,10,100,10))
+    nowhp_rate = (para.now_hp/para.max_hp)*100
+    pygame.draw.rect(bg,(0,208,0),(610,10,nowhp_rate,10))
     for i in range(10):
         draw_msg(bg,message[i],0,24*i,font,black)
 
 def boss_scene(bg):
     global point
+    from Dateclass import para
 
     key = pygame.key.get_pressed()
     if key[pygame.K_s] == 1:
@@ -333,6 +358,10 @@ def boss_scene(bg):
 
     bg.blit(bossback,[0,0])
     bg.blit(boss,[ene_x,ene_y])
+
+    pygame.draw.rect(bg,(255,138,197),(610,10,100,10))
+    nowhp_rate = (para.now_hp/para.max_hp)*100
+    pygame.draw.rect(bg,(0,208,0),(610,10,nowhp_rate,10))
 
     sur = font.render("Cut",True,black)
     bg.blit(sur,[200,600])
@@ -499,12 +528,26 @@ def battle_boss(bg):
         elif idx == 14:
             if timer == 1:
                 set_message("Enemy Attack!")
+                ene_atk = random.randint(3,7)
+                set_message("{} damages!".format(ene_atk))
+                para.now_hp -= ene_atk
             if timer == 6:
                 idx += 1
                 timer = 0
         else:
-            idx = 11
-            timer = 0
+            if para.now_hp <= 0:
+                set_message("You Dead...")
+                for i in range(10):
+                    draw_msg(bg,message[i],0,24*i,font,black)
+                pygame.draw.rect(bg,(255,138,197),(610,10,100,10))
+                pygame.display.update()
+                init_message()
+                time.sleep(2)
+                break
+
+            else:
+                idx = 11
+                timer = 0
         boss_scene(bg)
         pygame.display.update()
         clock.tick(10)

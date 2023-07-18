@@ -34,13 +34,12 @@ def first_point(): #最初の座標決め
             para.pl_x = x
             para.pl_y = y
             para.savefile()
-            print(y,x)
             break
 
 def stair_check(bg):
         if para.stair_y == para.pl_y and para.stair_x == para.pl_x:
             para.stair_now += 1
-            if para.stair_now == 5:
+            if para.stair_now == 2:
                 para.room = boss_map()
             else:
                 bg.fill(black)

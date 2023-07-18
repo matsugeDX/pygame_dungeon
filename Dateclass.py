@@ -16,7 +16,12 @@ class Date():
         self.stair_x = int(rl[7].strip("\n")) #現在フロアの階段x座標
         self.stair_y = int(rl[8].strip("\n")) #現在フロアの階段y座標
         self.stair_now = int(rl[9].strip("\n")) #現在フロア
-    
+        self.max_hp = int(rl[10].strip("\n")) #最大体力
+        self.max_hungry = int(rl[11].strip("\n")) #最大腹減り
+        self.now_hp = int(rl[12].strip("\n")) #現在体力
+        self.now_hungry = int(rl[13].strip("\n")) #現在腹減り
+        self.hungry_cnt = int(rl[14].strip("\n")) #歩数カウント
+
     def savefile(self):
         file = open("save.txt","w")
         file.write(str(self.get_exp)+"\n")
@@ -29,6 +34,11 @@ class Date():
         file.write(str(self.stair_x)+"\n")
         file.write(str(self.stair_y)+"\n")
         file.write(str(self.stair_now)+"\n")
+        file.write(str(self.max_hp)+"\n")
+        file.write(str(self.max_hungry)+"\n")
+        file.write(str(self.now_hp)+"\n")
+        file.write(str(self.now_hungry)+"\n")
+        file.write(str(self.hungry_cnt)+"\n")
         file.close()
 
 para = Date()

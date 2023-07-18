@@ -64,6 +64,7 @@ def start_bg(bg):
                         bg.blit(sur,[300,480])
                         sur = font.render("->",True,white)
                         bg.blit(sur,[200,480])
+                
                 if key[pygame.K_SPACE] == 1:
                         pygame.mixer.music.stop()
                         se_deci.play()
@@ -76,6 +77,11 @@ def start_bg(bg):
                                 para.room = make_map()
                                 para.stair = "stairoff"
                                 para.stair_now = 1
+                                para.max_hp = 100
+                                para.max_hungry = 100
+                                para.now_hp = 100
+                                para.now_hungry = 100
+                                para.hungry_cnt = 0
                                 break
                         else:
                                 file = open("save.txt","r")
@@ -88,6 +94,11 @@ def start_bg(bg):
                                 para.pl_y = int(rl[4].strip("\n"))
                                 para.room = eval(rl[5].strip("\n"))
                                 para.stair = (rl[6].strip("\n"))
+                                para.max_hp = int(rl[10].strip("\n"))
+                                para.max_hungry = int(rl[11].strip("\n"))
+                                para.now_hp = int(rl[12].strip("\n"))
+                                para.now_hungry = int(rl[13].strip("\n"))
+                                para.hungry_cnt = int(rl[14].strip("\n"))                         
                                 break
                 pygame.display.update()
                 clock.tick(30)
