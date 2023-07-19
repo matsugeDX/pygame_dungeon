@@ -60,7 +60,13 @@ def make_map():
                     if random.randint(0,99) < 30:
                         for s in range(-1,2):
                             for t in range(-1,2):
-                                room[di+s][dj+t] = 0
+                                item = random.randint(0,100)
+                                if item == 1:
+                                    room[di+s][dj+t] = 1
+                                elif item == 2:
+                                    room[di+s][dj+t] = 2
+                                else:
+                                    room[di+s][dj+t] = 0
                     else:
                         room[di][dj] = 0
                         if map[i-1][j] == 0:
