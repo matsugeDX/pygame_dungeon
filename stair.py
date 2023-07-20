@@ -23,7 +23,6 @@ def put_stair(): #階段座標決めおよび階段周りを床
             para.stair_y = y
             para.savefile()
             para.room[y][x] = 3 #階段座標
-            print(y,x)
             break
 
 def first_point(): #最初の座標決め
@@ -39,7 +38,7 @@ def first_point(): #最初の座標決め
 def stair_check(bg):
         if para.stair_y == para.pl_y and para.stair_x == para.pl_x:
             para.stair_now += 1
-            if para.stair_now == 2:
+            if para.stair_now == 5:
                 para.room = boss_map()
             else:
                 bg.fill(black)

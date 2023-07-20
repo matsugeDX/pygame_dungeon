@@ -58,7 +58,7 @@ def main():
                         sys.exit()
                 
             stair_check(screen)
-            if para.stair_now == 2:
+            if para.stair_now == 5:
                 para.pl_x,para.pl_y = 15,15
                 para.savefile()
                 break
