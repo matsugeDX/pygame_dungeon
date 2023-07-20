@@ -82,6 +82,7 @@ def start_bg(bg):
                                 para.now_hp = 100
                                 para.now_hungry = 100
                                 para.hungry_cnt = 0
+                                para.move_delay = 0
                                 break
                         else:
                                 file = open("save.txt","r")
@@ -98,7 +99,8 @@ def start_bg(bg):
                                 para.max_hungry = int(rl[11].strip("\n"))
                                 para.now_hp = int(rl[12].strip("\n"))
                                 para.now_hungry = int(rl[13].strip("\n"))
-                                para.hungry_cnt = int(rl[14].strip("\n"))                         
+                                para.hungry_cnt = int(rl[14].strip("\n"))
+                                para.move_delay = 0       #必要ない？                
                                 break
                 pygame.display.update()
                 clock.tick(30)

@@ -102,7 +102,68 @@ def move_player(y,x): # 主人公の移動
     
     key = pygame.key.get_pressed()
 
-    if key[pygame.K_w] == 1:
+
+    '''if key[pygame.K_w] == 1 and key[pygame.K_a] == 1:
+        if para.room[y-1][x-1] != 9:
+            para.pl_y -= 1
+            para.pl_x -= 1 
+            para.hungry_cnt += 1
+            d = random.randint(0,999)
+            if d < -5:
+                battle_count(screen)
+            if para.hungry_cnt == 50:
+                para.hungry_cnt = 0
+                if para.now_hungry > 0:
+                    para.now_hungry -= 1
+            if para.now_hungry == 0:
+                para.now_hp -= 1
+
+    if key[pygame.K_w] == 1 and key[pygame.K_d] == 1:
+        if para.room[y-1][x+1] != 9:
+            para.pl_y -= 1
+            para.pl_x += 1 
+            para.hungry_cnt += 1
+            d = random.randint(0,999)
+            if d < -5:
+                battle_count(screen)
+            if para.hungry_cnt == 50:
+                para.hungry_cnt = 0
+                if para.now_hungry > 0:
+                    para.now_hungry -= 1
+            if para.now_hungry == 0:
+                para.now_hp -= 1
+
+    if key[pygame.K_s] == 1 and key[pygame.K_a] == 1:
+        if para.room[y+1][x-1] != 9:
+            para.pl_y += 1
+            para.pl_x -= 1 
+            para.hungry_cnt += 1
+            d = random.randint(0,999)
+            if d < -5:
+                battle_count(screen)
+            if para.hungry_cnt == 50:
+                para.hungry_cnt = 0
+                if para.now_hungry > 0:
+                    para.now_hungry -= 1
+            if para.now_hungry == 0:
+                para.now_hp -= 1
+
+    if key[pygame.K_s] == 1 and key[pygame.K_d] == 1:
+        if para.room[y+1][x+1] != 9:
+            para.pl_y += 1
+            para.pl_x += 1 
+            para.hungry_cnt += 1
+            d = random.randint(0,999)
+            if d < -5:
+                battle_count(screen)
+            if para.hungry_cnt == 50:
+                para.hungry_cnt = 0
+                if para.now_hungry > 0:
+                    para.now_hungry -= 1
+            if para.now_hungry == 0:
+                para.now_hp -= 1
+
+    if (key[pygame.K_w] == 1 and key[pygame.K_a] == 0) or (key[pygame.K_w] == 1 and key[pygame.K_d] == 0):
         if para.room[y-1][x] != 9:
             para.pl_y  -= 1
             para.hungry_cnt += 1
@@ -116,7 +177,7 @@ def move_player(y,x): # 主人公の移動
             if para.now_hungry == 0:
                 para.now_hp -= 1
 
-    if key[pygame.K_s] == 1:
+    if (key[pygame.K_s] == 1 and key[pygame.K_a] == 0) or (key[pygame.K_s] == 1 and key[pygame.K_d] == 0):
         if para.room[y+1][x] != 9:
             para.pl_y += 1
             para.hungry_cnt += 1
@@ -130,7 +191,7 @@ def move_player(y,x): # 主人公の移動
             if para.now_hungry == 0:
                 para.now_hp -= 1
 
-    if key[pygame.K_a] == 1:
+    if (key[pygame.K_a] == 1 and key[pygame.K_w] == 0) or (key[pygame.K_a] == 1 and key[pygame.K_s] == 0):
         if para.room[y][x-1] != 9:
             para.pl_x -= 1
             para.hungry_cnt += 1
@@ -144,7 +205,7 @@ def move_player(y,x): # 主人公の移動
             if para.now_hungry == 0:
                 para.now_hp -= 1
 
-    if key[pygame.K_d] == 1:
+    if (key[pygame.K_d] == 1 and key[pygame.K_w] == 0) or (key[pygame.K_d] == 1 and key[pygame.K_s] == 0):
         if para.room[y][x+1] != 9:
             para.pl_x += 1
             para.hungry_cnt += 1
@@ -156,4 +217,83 @@ def move_player(y,x): # 主人公の移動
                 if para.now_hungry > 0:
                     para.now_hungry -= 1
             if para.now_hungry == 0:
-                para.now_hp -= 1
+                para.now_hp -= 1'''
+
+    if  key[pygame.K_w] == 1:
+        if para.room[y-1][x] != 9:
+            if not para.move:
+                para.pl_y  -= 1
+
+                para.move = True
+                para.move_delay = pygame.time.get_ticks() + para.move_delay_time
+
+                para.hungry_cnt += 1
+                d = random.randint(0,999)
+                if d < -5:
+                    battle_count(screen)
+                if para.hungry_cnt == 50:
+                    para.hungry_cnt = 0
+                    if para.now_hungry > 0:
+                        para.now_hungry -= 1
+                if para.now_hungry == 0:
+                    para.now_hp -= 1
+
+    if  key[pygame.K_s] == 1:
+        if para.room[y+1][x] != 9:
+            if not para.move:
+                para.pl_y += 1
+
+                para.move = True
+                para.move_delay = pygame.time.get_ticks() + para.move_delay_time
+
+                para.hungry_cnt += 1
+                d = random.randint(0,999)
+                if d < -5:
+                    battle_count(screen)
+                if para.hungry_cnt == 50:
+                    para.hungry_cnt = 0
+                    if para.now_hungry > 0:
+                        para.now_hungry -= 1
+                if para.now_hungry == 0:
+                    para.now_hp -= 1
+
+    if  key[pygame.K_a] == 1:
+        if para.room[y][x-1] != 9:
+            if not para.move:
+                para.pl_x -= 1
+
+                para.move = True
+                para.move_delay = pygame.time.get_ticks() + para.move_delay_time
+
+                para.hungry_cnt += 1
+                d = random.randint(0,999)
+                if d < -5:
+                    battle_count(screen)
+                if para.hungry_cnt == 50:
+                    para.hungry_cnt = 0
+                    if para.now_hungry > 0:
+                        para.now_hungry -= 1
+                if para.now_hungry == 0:
+                    para.now_hp -= 1
+
+    if key[pygame.K_d] == 1:
+        if para.room[y][x+1] != 9:
+            if not para.move:
+                para.pl_x += 1
+
+                para.move = True
+                para.move_delay = pygame.time.get_ticks() + para.move_delay_time
+
+                para.hungry_cnt += 1
+                d = random.randint(0,999)
+                if d < -5:
+                    battle_count(screen)
+                if para.hungry_cnt == 50:
+                    para.hungry_cnt = 0
+                    if para.now_hungry > 0:
+                        para.now_hungry -= 1
+                if para.now_hungry == 0:
+                    para.now_hp -= 1
+    
+    if para.move and pygame.time.get_ticks() > para.move_delay:
+        para.move = False

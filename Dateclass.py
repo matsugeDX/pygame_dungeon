@@ -21,6 +21,9 @@ class Date():
         self.now_hp = int(rl[12].strip("\n")) #現在体力
         self.now_hungry = int(rl[13].strip("\n")) #現在腹減り
         self.hungry_cnt = int(rl[14].strip("\n")) #歩数カウント
+        self.move = str(rl[15].strip("\n"))
+        self.move_delay = int(rl[16].strip("\n"))
+        self.move_delay_time = int(rl[17].strip("\n"))
 
     def savefile(self):
         file = open("save.txt","w")
@@ -39,6 +42,9 @@ class Date():
         file.write(str(self.now_hp)+"\n")
         file.write(str(self.now_hungry)+"\n")
         file.write(str(self.hungry_cnt)+"\n")
+        file.write(str(self.move)+"\n")
+        file.write(str(self.move_delay)+"\n")
+        file.write(str(self.move_delay_time)+"\n")
         file.close()
 
 para = Date()
